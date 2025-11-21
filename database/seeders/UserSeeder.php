@@ -1,0 +1,36 @@
+<?php
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+
+class UserSeeder extends Seeder
+{
+        /**
+         * Run the database seeds.
+         *
+         * @return void
+         */
+        public function run()
+        {
+                User::create([
+                        'name' => 'administrator',
+                        'username' => 'administrator',
+                        'email' => 'administrator@gmail.com',
+                        'email_verified_at' => now(),
+                        'password' => bcrypt('123qweA'),
+                        'remember_token' => Str::random(10),
+                ])->assignRole('administrator');
+
+                User::create([
+                        'name' => 'user',
+                        'username' => 'user',
+                        'email' => 'user@gmail.com',
+                        'email_verified_at' => now(),
+                        'password' => bcrypt('123qweA'),
+                        'remember_token' => Str::random(10),
+                ])->assignRole('user');
+
+        }
+}
