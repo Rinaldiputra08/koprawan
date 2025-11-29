@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMenuRequest;
 use App\Models\Menu;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Mavinoo\Batch\BatchFacade;
 
 class MenuController extends Controller

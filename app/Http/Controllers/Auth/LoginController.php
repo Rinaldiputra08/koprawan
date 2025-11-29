@@ -58,7 +58,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if($user->hasRole('administrator')){
+        if ($user->hasRole('administrator')) {
             session(['isAdmin' => true]);
         }
     }

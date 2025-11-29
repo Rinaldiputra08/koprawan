@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{NotificationController, DashboardController, LoginAsController, LoginGoogleController, NotificationReadController};
+use App\Http\Controllers\{NotificationController, DashboardController, LoginAsController, LoginGoogleController, NotificationReadController, orderController};
 use App\Http\Controllers\Auth\{LoginAppController, LoginController};
 use App\Http\Controllers\Closing\ClosingProdukController;
 use App\Http\Controllers\Gudang\BeritaAcaraGudangController;
@@ -43,7 +43,7 @@ Route::get('/auth/google/callback', [LoginGoogleController::class, 'handleGoogle
 /** end authentication */
 
 Route::middleware(['auth', 'verified', 'logoff'])->group(function () {
-
+    Route::get('/orders', [orderController::class, 'index'])->name('order');
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard.index');
         Route::get('/detail/{jenis}', [DashboardController::class, 'detail']);
@@ -67,7 +67,7 @@ Route::middleware(['auth', 'verified', 'logoff'])->group(function () {
         Route::resource('akses-role', AksesRoleController::class);
         Route::resource('akses-user', AksesUserController::class)->except(['show', 'destroy', 'create', 'store']);
 
-        Route::resource('users', UserController::class);
+        Route::resource('users', UserController::class)->names('users');
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RoleController::class);
 
@@ -143,7 +143,7 @@ Route::middleware(['auth', 'verified', 'logoff'])->group(function () {
 
         Route::name('penjualan.')->group(function () {
             Route::prefix('penjualan-langsung')->group(function () {
-                Route::get('scan-qr/{code}', [PenjualanLangsungController::class, 'scanQr']);
+                Route::get('scan-qr/{code}', [PenjualanLangsungController::class, 'cekNik']);
                 Route::get('cari-produk', [PenjualanLangsungController::class, 'findProduk']);
                 Route::put('batal/{penjualan_langsung}', [PenjualanLangsungController::class, 'batal'])->name('penjualan-langsung.batal');
             });
@@ -163,8 +163,9 @@ Route::middleware(['auth', 'verified', 'logoff'])->group(function () {
 
     Route::prefix('titipan')->group(function () {
         Route::name('titipan.')->group(function () {
-            Route::get('produk-titipan/approve/{titipan}', [TitipanController::class, 'approve'])->name('approve');
-            Route::put('produk-titipan/approve/{titipan}', [TitipanController::class, 'postApprove']);
+            Route::get('produk-titipan/approve/{titipan}', [TitipanController::class, 'approve'])->name('titipan.approve');
+            Route::put('produk-titipan/approve/{titipan}', [TitipanController::class, 'postApprove'])->name('post-approve');
+            ;
             Route::resource('produk-titipan', TitipanController::class)->except(['destroy']);
         });
     });

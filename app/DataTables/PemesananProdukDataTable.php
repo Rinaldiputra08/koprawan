@@ -17,9 +17,11 @@ class PemesananProdukDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query->with('supplier:id,nama')->withCount(['pemesananDetail' => function ($query) {
-                $query->selesaiPenerimaan();
-            }]))
+            ->eloquent($query->with('supplier:id,nama')->withCount([
+                'pemesananDetail' => function ($query) {
+                    $query->selesaiPenerimaan();
+                }
+            ]))
             ->editColumn('tanggal_pemesanan', function ($row) {
                 return $row->tanggal_pemesanan_formatted;
             })
@@ -52,16 +54,16 @@ class PemesananProdukDataTable extends DataTable
 
                 $action .= '<a class="dropdown-item action" data-method="GET" href="' . route('pembelian.pemesanan-produk.show', $row->id) . '">Detail</a>';
 
-                if ($user->can('cancel ' . request()->path())) {
-                    if ($row->pemesanan_detail_count == 0 and !$row->tanggal_batal) {
-                        $action .= '<a class="dropdown-item batal" data-method="PUT" href="' . route('pembelian.pemesanan-produk.batal', $row->id) . '">Batal</a>';
-                    }
-                }
-
-                if ($user->can('print ' . request()->path()) and !$row->tanggal_batal) {
-                    $action .= '<a class="dropdown-item" target="_blank" href="' . route('pembelian.pemesanan-produk.cetak', $row->uuid) . '">Cetak</a>';
-                }
-
+                // if ($user->can('cancel ' . request()->path())) {
+                //     if ($row->pemesanan_detail_count == 0 and !$row->tanggal_batal) {
+                //         $action .= '<a class="dropdown-item batal" data-method="PUT" href="' . route('pembelian.pemesanan-produk.batal', $row->id) . '">Batal</a>';
+                //     }
+                // }
+    
+                // if ($user->can('print ' . request()->path()) and !$row->tanggal_batal) {
+                //     $action .= '<a class="dropdown-item" target="_blank" href="' . route('pembelian.pemesanan-produk.cetak', $row->uuid) . '">Cetak</a>';
+                // }
+    
                 return $action .= '</div>';
             })
             ->addIndexColumn()

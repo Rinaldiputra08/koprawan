@@ -25,17 +25,18 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request, UploadService $upload)
     {
-        if ($request->hasFile('foto')) {
+        // dd($request);
+        if ($request->hasFile('foto_upload')) {
             $data = $request->all();
-            
-            // upload foto
-            $imageName = $upload->uploadFoto($request);
+            $imageName = $upload->uploadFoto($request, 'foto_upload');
 
-            $data['foto'] = $imageName;
+            $data['foto'] = $imageName; // simpan ke kolom foto
             $data['password'] = bcrypt($request->password);
             $data['tgl_lahir'] = convertDate($request->tgl_lahir);
+
             unset($data['_token']);
             unset($data['password_confirmation']);
+            unset($data['foto_upload']);
 
             $user = User::create($data);
             $user->syncRoles($request->roles);
@@ -43,11 +44,6 @@ class UserController extends Controller
             return response()->json([
                 "status" => "success",
                 "message" => "Data berhasil disimpan"
-            ]);
-        } else {
-            return response()->json([
-                "status" => "error",
-                "message" => "Gagal! data gagal disimpan"
             ]);
         }
     }
@@ -57,10 +53,12 @@ class UserController extends Controller
         //
     }
 
-    public function profile(){
+    public function profile()
+    {
         $getDetail = auth()->user();
+        // dd($getDetail);
         $roles = Role::all();
-        return view('konfigurasi.user-profile',compact('getDetail','roles'));
+        return view('konfigurasi.user-profile', compact('getDetail', 'roles'));
     }
     public function edit(User $user)
     {
@@ -73,7 +71,7 @@ class UserController extends Controller
     {
         $user->name = $request->name;
         $user->email = $request->email;
-        if($request->has('blokir')){
+        if ($request->has('blokir')) {
             $user->blokir = $request->blokir;
         }
         $user->alamat = $request->alamat;
@@ -89,11 +87,11 @@ class UserController extends Controller
         // }
 
         /** using base64 */
-        if($request->foto_upload != ''){
+        if ($request->foto_upload != '') {
             if ($user->foto) {
                 $upload->deleteFoto($user->foto);
             }
-            $imageName = $upload->uploadFromBase64($request->foto_upload, 'profile',time() .$request->file('foto')->getClientOriginalName());
+            $imageName = $upload->uploadFromBase64($request->foto_upload, 'profile', time() . $request->file('foto')->getClientOriginalName());
             $user->foto = $imageName;
         }
 
@@ -102,12 +100,12 @@ class UserController extends Controller
         }
 
         $user->save();
-        if($request->has('roles')){
+        if ($request->has('roles')) {
             $user->syncRoles($request->roles);
         }
 
-        if(!$request->ajax()){
-            return redirect()->back()->with('message','Data berhasil diubah');
+        if (!$request->ajax()) {
+            return redirect()->back()->with('message', 'Data berhasil diubah');
         }
         return response()->json([
             "status" => "success",

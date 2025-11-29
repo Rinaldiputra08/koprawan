@@ -9,10 +9,12 @@
     <meta name="keywords" content="honda bintaro operasional sistem">
     <meta name="author" content="hondabintaro.com">
     @stack('meta')
-    <title>{{ ucfirst(Request::segment(1)) . (Request::segment(2) != '' ? ' '. ucfirst(Request::segment(2)) : '') }} &mdash; HBOS</title>
+    <title>{{ ucfirst(Request::segment(1)) . (Request::segment(2) != '' ? ' ' . ucfirst(Request::segment(2)) : '') }}
+        &mdash; HBOS</title>
     <link rel="apple-touch-icon" href="{{ asset('') }}assets/images/ico/hbos.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('') }}assets/images/ico/hbos.png">
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+    {{--
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet"> --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/vendors/css/extensions/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/vendors/css/pickers/pickadate/pickadate.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('') }}assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -34,12 +35,9 @@
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('') }}assets/css/plugins/extensions/ext-component-toastr.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('') }}assets/css/plugins/forms/pickers/form-flat-pickr.css">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('') }}assets/css/plugins/forms/pickers/form-pickadate.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/plugins/extensions/ext-component-toastr.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/plugins/forms/pickers/form-flat-pickr.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/plugins/forms/pickers/form-pickadate.css">
     @stack('css')
     <!-- END: Page CSS-->
 
@@ -55,11 +53,14 @@
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static" data-open="click"
     data-menu="vertical-menu-modern" data-col="">
 
-    <div class="modal fade text-left modal-filter" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel16" aria-hidden="true"></div>
+    <div class="modal fade text-left modal-filter" tabindex="-1" role="dialog" data-backdrop="static"
+        aria-labelledby="myModalLabel16" aria-hidden="true"></div>
 
-    <div class="modal fade text-left modal-global" id="xlarge" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel16" aria-hidden="true"></div>
-    
-    <div class="modal fade text-left modal-find" id="modal-small" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true"></div>
+    <div class="modal fade text-left modal-global" id="xlarge" tabindex="-1" role="dialog" data-backdrop="static"
+        aria-labelledby="myModalLabel16" aria-hidden="true"></div>
+
+    <div class="modal fade text-left modal-find" id="modal-small" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel16" aria-hidden="true"></div>
 
     {{-- loading --}}
     <div class="preload-wrapper6 overlay" align="center">
@@ -85,7 +86,9 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">{{ ucwords(str_replace('-', ' ',Request::segment(1))) }}</h2>
+                            <h2 class="content-header-title float-left mb-0">
+                                {{ ucwords(str_replace('-', ' ', Request::segment(1))) }}
+                            </h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a
@@ -113,8 +116,8 @@
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static footer-light">
         <p class="clearfix mb-0"><span class="float-md-left d-block d-md-inline-block mt-25">COPYRIGHT &copy;
-                {{ date('Y') }}<a class="ml-25" href="https://honda-bintaro.com" target="_blank">Honda
-                    Bintaro</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span
+                {{ date('Y') }}<a class="ml-25" href="https://honda-bintaro.com" target="_blank">KOPRAWAN
+                </a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span
                 class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
     </footer>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
@@ -130,7 +133,8 @@
     <script src="{{ asset('') }}assets/vendors/js/pickers/pickadate/picker.time.js"></script>
     <script src="{{ asset('') }}assets/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="{{ asset('') }}assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
-    {{-- <script src="{{ asset('') }}assets/vendors/js/idlejs/idle.js"></script> --}}
+    {{--
+    <script src="{{ asset('') }}assets/vendors/js/idlejs/idle.js"></script> --}}
     <script src="{{ asset('') }}assets/js/scripts/forms/pickers/form-pickers.js"></script>
     <script src="{{ asset('') }}assets/js/scripts/components/components-tooltips.js"></script>
     @stack('vendor')
@@ -148,16 +152,16 @@
         //     },
         //     idle: 2 * (1000 * 60 * 60)
         // }).start();
-        
-        function handleNotification(){
+
+        function handleNotification() {
             $.ajax({
                 method: "GET",
                 url: "{{ route('notification') }}",
-                success: function(result) {
+                success: function (result) {
                     $('#badge-notification').html(result.count)
                     $('#list-notification').html(result.data)
                 },
-                error: function(e) {
+                error: function (e) {
                     const errors = e.responseJSON?.message;
                     if (errors) {
                         callModalError(errors);
@@ -166,37 +170,37 @@
             })
         }
 
-        $('.login-as').on('click', function(){
+        $('.login-as').on('click', function () {
             $.ajax({
                 method: 'get',
                 url: `{{ route('login-as') }}`,
-                success: function(res){
+                success: function (res) {
                     callModalFilter(res)
                 }
             })
         })
 
         handleNotification()
-        
-        function handleOtherNotification(){
+
+        function handleOtherNotification() {
             $.ajax({
                 method: 'get',
                 url: '{{ route("notification.other") }}',
-                success: function(res){
+                success: function (res) {
                     $('#badge-leads').html(res.count)
                     $('#list-leads').html(res.data)
                     _loadFeather()
                 },
-                error: function(e){
+                error: function (e) {
                     const errors = e.responseJSON?.message
-                    if(errors) callModalError(errors)
+                    if (errors) callModalError(errors)
                 }
             })
 
         }
 
         handleOtherNotification()
-        
+
         _loadFeather();
         // datePicker();
 
@@ -262,7 +266,7 @@
 
         function storeAction(formId, dataTable, cb = null) {
             const _form = $(formId)
-            _form.on('submit', function(e){
+            _form.on('submit', function (e) {
                 e.preventDefault()
 
                 // let formdata = _form.serialize();
@@ -281,7 +285,7 @@
                     data: formdata,
                     processData: false,
                     contentType: false,
-                    success: function(result) {
+                    success: function (result) {
                         if (result.status == 'success') {
                             $('.modal-global').modal('hide');
                             window.LaravelDataTables[dataTable].ajax.reload();
@@ -290,17 +294,17 @@
                             closeButton: true,
                             tapToDismiss: false
                         });
-                        if(cb){
+                        if (cb) {
                             cb()
                         }
                     },
-                    error: function(e) {
+                    error: function (e) {
                         _form.find('span.error').remove()
                         _form.find('.is-invalid').removeClass('is-invalid')
                         const errors = e.responseJSON?.errors;
                         if (errors) {
                             let i = 0
-                            for (const [key, value] of Object.entries(errors)) {  
+                            for (const [key, value] of Object.entries(errors)) {
                                 if (i == 0) {
                                     $(`[name="${key}"]`).focus()
                                 }
@@ -309,21 +313,21 @@
                             }
                         }
                     },
-                    complete: function(){
+                    complete: function () {
                         saveLoading('', 'Simpan')
                     }
                 })
-            
+
             })
         }
 
-        function callSelect2(){
+        function callSelect2() {
             const selectTwo = $('.select2').select2({
                 placeholder: $(this).data('placeholder')
-            })   
+            })
         }
 
-        function bsDatePicker(selector = '.datepicker', options = null, event = null, callback = null){
+        function bsDatePicker(selector = '.datepicker', options = null, event = null, callback = null) {
             let datePicker
             if (options) {
                 datePicker = $(selector).datepicker(options)
@@ -341,62 +345,61 @@
             }
         }
 
-        function ajaxAction(url, method, cb, data = null)
-        {
+        function ajaxAction(url, method, cb, data = null) {
             showLoading();
             $.ajax({
                 method,
                 url,
                 data,
-                success: function(result) {
+                success: function (result) {
                     if (method.toLowerCase() == 'get') {
                         callModal(result)
                         _loadFeather()
                     }
                     cb(result)
-                }, error: function(e){
+                }, error: function (e) {
                     const errors = e.responseJSON?.message;
                     if (errors) {
                         callModalError(errors)
                     }
                 },
-                complete: function(){
+                complete: function () {
                     hideLoading()
                 }
             })
         }
 
-        function ajaxFind(url, method, cb){
+        function ajaxFind(url, method, cb) {
             showLoading()
             $.ajax({
                 method,
                 url,
-                success: function(result){
+                success: function (result) {
                     callModalFind(result)
                     _loadFeather()
                     cb()
                 },
-                error: function(e){
+                error: function (e) {
                     const errors = e.responseJSON?.message
-                    if(errors){
+                    if (errors) {
                         callModalError(errors)
                     }
                 },
-                complete: function(){
+                complete: function () {
                     hideLoading()
                 }
             })
         }
 
-        function ajaxSelect(url, method, cb, data = null){
+        function ajaxSelect(url, method, cb, data = null) {
             $.ajax({
                 method,
                 url,
                 data,
-                success: function(result){
+                success: function (result) {
                     cb(result)
                 },
-                error: function(e){
+                error: function (e) {
                     const error = e.responseJSON?.message
                     if (error) {
                         toastr[result.status](result.message, {
@@ -429,11 +432,11 @@
 
         function debounce(callback, ms) {
             var timer = 0;
-            return function() {
+            return function () {
                 var context = this,
                     args = arguments;
                 clearTimeout(timer);
-                timer = setTimeout(function() {
+                timer = setTimeout(function () {
                     callback.apply(context, args);
                 }, ms || 800);
             };
@@ -445,13 +448,13 @@
             modal.modal('show');
         }
 
-        function callModalFilter(element){
+        function callModalFilter(element) {
             const modal = $('.modal-filter')
             modal.html(element)
             modal.modal('show')
         }
 
-        function callModalError(message){
+        function callModalError(message) {
             const modal = $(".modal-global")
             modal.html(`<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
@@ -496,12 +499,12 @@
             }
 
             if (replaceOptions) {
-                $.each(replaceOptions, function(key, value){
+                $.each(replaceOptions, function (key, value) {
                     options[key] = value
                 })
             }
-            
-            Swal.fire(options).then(function(result) {
+
+            Swal.fire(options).then(function (result) {
                 if (result.value) {
                     cb(result.value)
                 }

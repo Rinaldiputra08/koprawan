@@ -22,6 +22,7 @@ class LimitKaryawan extends Model
     public function scopeActive(Builder $query)
     {
         $periode = getCurrentPeriode();
+
         return $query->where('periode', $periode);
     }
 

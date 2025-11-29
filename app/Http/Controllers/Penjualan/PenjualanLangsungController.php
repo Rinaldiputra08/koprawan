@@ -53,9 +53,22 @@ class PenjualanLangsungController extends Controller
         return view('penjualan.penjualanlangsung-pembeli', compact('data', 'vouchers'));
     }
 
+    public function cekNik($nik)
+    {
+        $data = $this->repository->getDataKaryawan($nik);
+        if (!$data) {
+            abort(404, 'Data Karyawan tidak ditemukan.');
+        }
+
+        $pemakaian_voucher = $data->pemakaianVoucher;
+        $voucher_umum = $this->repository->getVoucherUmum();
+        $vouchers = $this->service->dataVoucher($data, $voucher_umum, $pemakaian_voucher);
+
+        return view('penjualan.penjualanlangsung-pembeli', compact('data', 'vouchers'));
+    }
     public function findProduk(Request $request)
     {
-        $jenis =  $request->jenis ?? 'koperasi';
+        $jenis = $request->jenis ?? 'koperasi';
 
         if ($jenis == 'koperasi') {
             $data = $this->repository->getProduk($request->search);
@@ -74,7 +87,8 @@ class PenjualanLangsungController extends Controller
 
         if ($request->has('kode')) {
             $data = $this->repository->getProdukById($request->kode, 'kode');
-            if (!$data) return null;
+            if (!$data)
+                return null;
         }
 
         if ($request->has('search') or $request->has('kode') or $request->has('jenis')) {
@@ -127,9 +141,9 @@ class PenjualanLangsungController extends Controller
             foreach ($listproduk as $jenis => $produk) {
 
                 foreach ($produk as $produk_id => $item) {
-                    $qty = (int)str_replace('.', '', $request->qty[$jenis][$produk_id]);
+                    $qty = (int) str_replace('.', '', $request->qty[$jenis][$produk_id]);
                     $total_harga_produk = $qty * $item->harga_jual;
-                    $diskon_produk =  $qty * ($item->diskon->nominal ?? 0);
+                    $diskon_produk = $qty * ($item->diskon->nominal ?? 0);
                     $total_diskon += $diskon_produk;
                     $total_harga += $total_harga_produk;
                     // prepare data for penjualan detial
@@ -153,7 +167,7 @@ class PenjualanLangsungController extends Controller
                     // prepre data for update stock
                     $update_stok[] = [
                         'id' => $item->id,
-                        'stock_free' => $item->stock_free  - $qty,
+                        'stock_free' => $item->stock_free - $qty,
                         'stock_fisik' => $item->stock_fisik - $qty,
                     ];
                 }

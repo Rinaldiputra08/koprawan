@@ -51,16 +51,16 @@ class PenerimaanProdukDataTable extends DataTable
                     }
                 }
 
-                if ($user->can('cancel ' . request()->path())) {
-                    if (!$row->tanggal_batal) {
-                        $action .= '<a class="dropdown-item batal" data-method="PUT" href="' . route('pembelian.penerimaan-produk.batal', $row->id) . '">Batal</a>';
-                    }
-                }
-
-                if ($user->can('print ' . request()->path()) and !$row->tanggal_batal) {
-                    $action .= '<a class="dropdown-item" target="_blank" href="' . route('pembelian.penerimaan-produk.cetak', $row->uuid) . '">Cetak</a>';
-                }
-
+                // if ($user->can('cancel ' . request()->path())) {
+                //     if (!$row->tanggal_batal) {
+                //         $action .= '<a class="dropdown-item batal" data-method="PUT" href="' . route('pembelian.penerimaan-produk.batal', $row->id) . '">Batal</a>';
+                //     }
+                // }
+    
+                // if ($user->can('print ' . request()->path()) and !$row->tanggal_batal) {
+                //     $action .= '<a class="dropdown-item" target="_blank" href="' . route('pembelian.penerimaan-produk.cetak', $row->uuid) . '">Cetak</a>';
+                // }
+    
                 return $action .= '</div>';
             })
             ->addIndexColumn()

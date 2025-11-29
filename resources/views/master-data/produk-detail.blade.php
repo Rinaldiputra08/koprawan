@@ -35,14 +35,14 @@
                                 <th>Harga Jual</th>
                                 <td>{{ $data->harga_jual_formatted }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th>Hpp Sebelum</th>
                                 <td>{{ $data->hpp_sebelum_formatted }}</td>
-                            </tr>
-                            <tr>
+                            </tr> --}}
+                            {{-- <tr>
                                 <th>Hpp</th>
                                 <td>{{ $data->hpp_formatted }}</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <th>Stock Free</th>
                                 <td>{{ $data->stock_free_formatted }}</td>
@@ -69,7 +69,8 @@
                             </tr>
                             <tr>
                                 <th>Aktif</th>
-                                <td>{!! $data->aktif == 1 ? '<i data-feather="check" class="text-success"></i>' : '<i data-feather="x" class="text-danger"></i>' !!}</td>
+                                <td>{!! $data->aktif == 1 ? '<i data-feather="check" class="text-success"></i>' : '<i data-feather="x" class="text-danger"></i>' !!}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -83,11 +84,13 @@
                                     <div class="swiper-wrapper">
                                         @foreach ($data->foto as $key => $foto)
                                             <div class="swiper-slide rounded swiper-shadow" id="gallery">
-                                                <a href="{{asset('storage/images/produk/medium_').$foto->nama_file }}" data-toggle="lightbox" data-max-width="600"> 
-                                                    <img src="{{ asset('storage/images/produk/small_').$foto->nama_file }}"  class="rounded mb-1 img-fluid">
+                                                <a href="{{asset('storage/images/produk/medium_') . $foto->nama_file }}"
+                                                    data-toggle="lightbox" data-max-width="600">
+                                                    <img src="{{ asset('storage/images/produk/small_') . $foto->nama_file }}"
+                                                        class="rounded mb-1 img-fluid">
                                                 </a>
                                             </div>
-                                        @endforeach    
+                                        @endforeach
                                     </div>
                                     <!-- Add Arrows -->
                                     <div class="swiper-button-next"></div>
@@ -97,7 +100,8 @@
                         </div>
                     </section>
                     <div>
-                        <span class="font-italic float-right">Diinput Oleh: {{ $data->user_input }}, {{ $data->tanggal_formatted }}</span>
+                        <span class="font-italic float-right">Diinput Oleh: {{ $data->user_input }},
+                            {{ $data->tanggal_formatted }}</span>
                     </div>
                 </div>
             </div>

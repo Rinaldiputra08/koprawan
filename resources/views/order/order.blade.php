@@ -46,14 +46,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header border-bottom">
-                        <h4 class="card-title">Penjualan Langsung</h4>
+                        <h4 class="card-title">List Order</h4>
                     </div><br>
-                    <div class="col-12">
-                        @can('create ' . request()->path())
-                            <button class="btn btn-gradient-primary add"
-                                data-url="{{ route('penjualan.penjualan-langsung.create') }}" type="button">Tambah</button>
-                        @endcan
-                    </div>
                     <div class="card-body">
                         {!! $dataTable->table() !!}
                     </div>
@@ -492,18 +486,18 @@
 
             function buildRow(data) {
                 return `<tr id="${data['kode_produk']}" class="cursor-pointer select-item">
-                                            <td data-key="kode_produk">${data['kode_produk']}</td>
-                                            <td data-key="nama_produk">${data['nama_produk']}</td>
-                                            <td class="text-right" data-key="harga_satuan">${data['harga_satuan']}</td>
-                                            <td class="text-right hidden" data-key="stok">${data['stok']}</td>
-                                            <td class="text-center" data-key="qty">${data['qty']}</td>
-                                            <td class="text-right" data-key="diskon">${data['diskon']}</td>
-                                            <td class="text-right" data-key="sub_total">${data['sub_total']}</td>
-                                            <td class="text-center"><button class="btn btn-sm btn-danger remove-item" data-name="${data['nama_produk']}" type="button">X</button></td>
-                                            <input type="hidden" name="jenis[${data['jenis']}][${data['id_produk']}]" value="${data['jenis']}">
-                                            <input type="hidden" name="qty[${data['jenis']}][${data['id_produk']}]" value="${data['qty']}">
-                                            <input type="hidden" name="nominal_diskon[${data['jenis']}][${data['id_produk']}]" value="${data['nominal_diskon']}">
-                                        </tr>`
+                                                        <td data-key="kode_produk">${data['kode_produk']}</td>
+                                                        <td data-key="nama_produk">${data['nama_produk']}</td>
+                                                        <td class="text-right" data-key="harga_satuan">${data['harga_satuan']}</td>
+                                                        <td class="text-right hidden" data-key="stok">${data['stok']}</td>
+                                                        <td class="text-center" data-key="qty">${data['qty']}</td>
+                                                        <td class="text-right" data-key="diskon">${data['diskon']}</td>
+                                                        <td class="text-right" data-key="sub_total">${data['sub_total']}</td>
+                                                        <td class="text-center"><button class="btn btn-sm btn-danger remove-item" data-name="${data['nama_produk']}" type="button">X</button></td>
+                                                        <input type="hidden" name="jenis[${data['jenis']}][${data['id_produk']}]" value="${data['jenis']}">
+                                                        <input type="hidden" name="qty[${data['jenis']}][${data['id_produk']}]" value="${data['qty']}">
+                                                        <input type="hidden" name="nominal_diskon[${data['jenis']}][${data['id_produk']}]" value="${data['nominal_diskon']}">
+                                                    </tr>`
             }
 
             function calculate() {
